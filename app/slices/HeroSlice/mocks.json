@@ -1,0 +1,40 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"header": {
+				"__TYPE__": "FieldContent",
+				"value": "fairly",
+				"type": "Text"
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "victory",
+				"type": "Text"
+			},
+			"button_link": {
+				"key": "38c29276-1691-43f9-9fec-8868cd10f09d",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "through",
+					"variant": "Primary"
+				}
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "In voluptate est consequat. Sint veniam veniam laboris laboris eu consequat qui cupidatat occaecat. Commodo dolore aliqua consectetur duis do sunt nisi sit nulla aliqua voluptate cupidatat sint quis."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

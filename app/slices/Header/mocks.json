@@ -1,0 +1,20 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"Title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consectetur laborum voluptate duis irure cupidatat nostrud minim voluptate. Eiusmod laboris occaecat officia proident minim nostrud in nisi cillum deserunt laboris ut ea."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
