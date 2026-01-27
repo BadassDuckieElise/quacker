@@ -12,7 +12,7 @@ const { data: page } = await useAsyncData(route.params.uid as string, () =>
 
 <template>
   <main>
-    <h1> {{ page?.data.title }}</h1>
+
     <!-- <pre>{{ page }}</pre> -->
     <!-- 2. Display the page's slices -->
     <SliceZone :slices="page?.data.slices ?? []" :components="components" />

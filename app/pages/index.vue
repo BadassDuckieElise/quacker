@@ -1,18 +1,20 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { components } from "~/slices";
 
-// 1. Fetch a page from Prismic
+// Fetch the Home singleton
 const prismic = usePrismic();
-const route = useRoute();
-const { data: page } = await useAsyncData("home",() =>
-  prismic.client.getByUID("page", "home"),
+const { data: page } = await useAsyncData("home", () =>
+  prismic.client.getSingle("home")
+);
+
+// Avoid rendering the Header slice here (it's already in the layout)
+const filteredSlices = computed(
+  () => page.value?.data?.slices?.filter((s) => s.slice_type !== "header") ?? []
 );
 </script>
 
 <template>
-  <main>
-    <p> test </p>
-    <!-- 2. Display the page's slices -->
-    <SliceZone :slices="page?.data.slices ?? []" :components="components" />
-  </main>
+  <SliceZone v-if="ImgContent" :slices="[ImgContent]" :components="components" />
+  <SliceZone :slices="filteredSlices" :components="components" />
 </template>

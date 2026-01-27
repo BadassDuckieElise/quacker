@@ -12,6 +12,20 @@
           "label": "Header",
           "placeholder": ""
         }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "footer": {
+              "type": "SharedSlice"
+            },
+            "header": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }

@@ -76,7 +76,7 @@
             "label": "Title",
             "placeholder": "",
             "allowTargetBlank": true,
-            "single": "paragraph,heading1,heading2,strong,em"
+            "single": "paragraph,heading2,strong,em"
           }
         },
         "description": {
@@ -85,7 +85,7 @@
             "label": "Description",
             "placeholder": "",
             "allowTargetBlank": false,
-            "multi": "paragraph,heading1"
+            "multi": "heading2,heading3,strong,em,list-item,o-list-item"
           }
         },
         "button_text": {

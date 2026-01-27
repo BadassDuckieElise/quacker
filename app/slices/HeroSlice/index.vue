@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { HeroSliceSlice } from "~/types/prismic";
+import type { HeroSlice } from "~/types/prismic";
 import { asHTML } from "@prismicio/helpers";
 
-const props = defineProps<{ slice: HeroSliceSlice }>();
+const props = defineProps<{ slice: HeroSlice }>();
 </script>
 
 <template>

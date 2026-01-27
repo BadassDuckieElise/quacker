@@ -18,7 +18,61 @@
             "label": "Header Title",
             "placeholder": "",
             "allowTargetBlank": true,
-            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "single": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "buttonpage1": {
+          "type": "Link",
+          "config": {
+            "label": "ButtonPage1",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "buttontext1": {
+          "type": "Text",
+          "config": {
+            "label": "ButtonText1",
+            "placeholder": ""
+          }
+        },
+        "buttonpage2": {
+          "type": "Link",
+          "config": {
+            "label": "ButtonPage2",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "buttontext2": {
+          "type": "Text",
+          "config": {
+            "label": "ButtonText2",
+            "placeholder": ""
+          }
+        },
+        "buttonpage3": {
+          "type": "Link",
+          "config": {
+            "label": "ButtonPage3",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "buttontext3": {
+          "type": "Text",
+          "config": {
+            "label": "ButtonText3",
+            "placeholder": ""
           }
         }
       },

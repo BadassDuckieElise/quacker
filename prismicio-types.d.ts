@@ -69,7 +69,7 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomeDocumentDataSlicesSlice = TestSliceSlice;
+type HomeDocumentDataSlicesSlice = ImgContentSlice;
 
 /**
  * Content for Home documents
@@ -194,6 +194,8 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type SettingsDocumentDataSlicesSlice = FooterSlice | HeaderSlice;
+
 /**
  * Content for Settings documents
  */
@@ -208,6 +210,17 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   header: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Settings*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<SettingsDocumentDataSlicesSlice>;
 }
 
 /**
@@ -229,6 +242,167 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes = HomeDocument | PageDocument | SettingsDocument;
 
 /**
+ * Primary content in *Footer → Default → Primary*
+ */
+export interface FooterSliceDefaultPrimary {
+  /**
+   * FooterHeader field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.footerheader
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  footerheader: prismic.RichTextField;
+
+  /**
+   * FooterDescription field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Only 5 bullet points/new lines
+   * - **API ID Path**: footer.default.primary.footerdescription
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  footerdescription: prismic.RichTextField;
+
+  /**
+   * FooterDescription2 field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Only 5 bullet points/new lines
+   * - **API ID Path**: footer.default.primary.footerdescription2
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  footerdescription2: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Footer Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FooterSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FooterSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Footer → FooterWithImage → Primary*
+ */
+export interface FooterSliceFooterimagePrimary {
+  /**
+   * FooterHeader field in *Footer → FooterWithImage → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footerimage.primary.footerheader
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  footerheader: prismic.KeyTextField;
+
+  /**
+   * FooterDescription field in *Footer → FooterWithImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Only 5 bullet points/new lines
+   * - **API ID Path**: footer.footerimage.primary.footerdescription
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  footerdescription: prismic.RichTextField;
+
+  /**
+   * FooterImage field in *Footer → FooterWithImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footerimage.primary.footerimage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  footerimage: prismic.ImageField<never>;
+}
+
+/**
+ * FooterWithImage variation for Footer Slice
+ *
+ * - **API ID**: `footerimage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FooterSliceFooterimage = prismic.SharedSliceVariation<
+  "footerimage",
+  Simplify<FooterSliceFooterimagePrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Footer → FooterWithMap → Primary*
+ */
+export interface FooterSliceFootermapPrimary {
+  /**
+   * FooterHeader field in *Footer → FooterWithMap → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footermap.primary.footerheader
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  footerheader: prismic.KeyTextField;
+
+  /**
+   * FooterDescription field in *Footer → FooterWithMap → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Only 5 bullet points/new lines
+   * - **API ID Path**: footer.footermap.primary.footerdescription
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  footerdescription: prismic.RichTextField;
+
+  /**
+   * FooterMap field in *Footer → FooterWithMap → Primary*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footermap.primary.footermap
+   * - **Documentation**: https://prismic.io/docs/fields/geopoint
+   */
+  footermap: prismic.GeoPointField;
+}
+
+/**
+ * FooterWithMap variation for Footer Slice
+ *
+ * - **API ID**: `footermap`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FooterSliceFootermap = prismic.SharedSliceVariation<
+  "footermap",
+  Simplify<FooterSliceFootermapPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Footer*
+ */
+type FooterSliceVariation =
+  | FooterSliceDefault
+  | FooterSliceFooterimage
+  | FooterSliceFootermap;
+
+/**
+ * Footer Shared Slice
+ *
+ * - **API ID**: `footer`
+ * - **Description**: Footer
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FooterSlice = prismic.SharedSlice<"footer", FooterSliceVariation>;
+
+/**
  * Primary content in *Header → Default → Primary*
  */
 export interface HeaderSliceDefaultPrimary {
@@ -241,6 +415,84 @@ export interface HeaderSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   Title: prismic.RichTextField;
+
+  /**
+   * ButtonPage1 field in *Header → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.default.primary.buttonpage1
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  buttonpage1: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * ButtonText1 field in *Header → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.default.primary.buttontext1
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  buttontext1: prismic.KeyTextField;
+
+  /**
+   * ButtonPage2 field in *Header → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.default.primary.buttonpage2
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  buttonpage2: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * ButtonText2 field in *Header → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.default.primary.buttontext2
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  buttontext2: prismic.KeyTextField;
+
+  /**
+   * ButtonPage3 field in *Header → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.default.primary.buttonpage3
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  buttonpage3: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * ButtonText3 field in *Header → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.default.primary.buttontext3
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  buttontext3: prismic.KeyTextField;
 }
 
 /**
@@ -612,7 +864,16 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
+      SettingsDocumentDataSlicesSlice,
       AllDocumentTypes,
+      FooterSlice,
+      FooterSliceDefaultPrimary,
+      FooterSliceFooterimagePrimary,
+      FooterSliceFootermapPrimary,
+      FooterSliceVariation,
+      FooterSliceDefault,
+      FooterSliceFooterimage,
+      FooterSliceFootermap,
       HeaderSlice,
       HeaderSliceDefaultPrimary,
       HeaderSliceVariation,

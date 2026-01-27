@@ -75,7 +75,7 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Magna dolor cillum enim commodo aute voluptate enim non dolor ad qui officia."
+							"text": "Cillum proident est ad reprehenderit est anim anim nostrud aute. Consectetur non laborum exercitation aute sit Lorem qui laborum mollit do."
 						}
 					}
 				]
@@ -84,9 +84,9 @@
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
-						"type": "paragraph",
+						"type": "heading2",
 						"content": {
-							"text": "Adipisicing mollit laboris cillum aliqua adipisicing."
+							"text": "Raise"
 						}
 					}
 				]
@@ -106,7 +106,6 @@
 				}
 			},
 			"image": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1587905069134-008460d7a636",
@@ -125,6 +124,8 @@
 					"background": "transparent"
 				},
 				"alt": "interior",
+				"credits": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			}
 		},
