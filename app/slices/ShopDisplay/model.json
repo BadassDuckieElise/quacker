@@ -1,0 +1,59 @@
+{
+  "id": "contactform",
+  "type": "SharedSlice",
+  "name": "ShopDisplay",
+  "description": "Contactform",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "shopdisplay": {
+          "type": "Group",
+          "config": {
+            "label": "ShopDisplay",
+            "repeat": true,
+            "fields": {
+              "item": {
+                "type": "Text",
+                "config": {
+                  "label": "Item",
+                  "placeholder": ""
+                }
+              },
+              "shopimg": {
+                "type": "Image",
+                "config": {
+                  "label": "ShopImg",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "Product description for modal",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+                }
+              },
+              "buttontext": {
+                "type": "Text",
+                "config": {
+                  "label": "Button Text",
+                  "placeholder": "Buy Now"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -17,13 +17,10 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "contactform": {
+              "type": "SharedSlice"
+            },
             "img_content": {
-              "type": "SharedSlice"
-            },
-            "hero_slice": {
-              "type": "SharedSlice"
-            },
-            "test_slice": {
               "type": "SharedSlice"
             }
           }

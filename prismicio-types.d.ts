@@ -84,7 +84,7 @@ interface HomeDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice>; /**
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
    * Meta Title field in *Home*
    *
    * - **Field Type**: Text
@@ -92,7 +92,7 @@ interface HomeDocumentData {
    * - **API ID Path**: home.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
-   */
+   */;
   meta_title: prismic.KeyTextField;
 
   /**
@@ -130,10 +130,7 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type PageDocumentDataSlicesSlice =
-  | ImgContentSlice
-  | HeroSliceSlice
-  | TestSliceSlice;
+type PageDocumentDataSlicesSlice = ContactformSlice | ImgContentSlice;
 
 /**
  * Content for page documents
@@ -148,7 +145,7 @@ interface PageDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
+  slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
    * Meta Title field in *page*
    *
    * - **Field Type**: Text
@@ -156,7 +153,7 @@ interface PageDocumentData {
    * - **API ID Path**: page.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
-   */
+   */;
   meta_title: prismic.KeyTextField;
 
   /**
@@ -240,6 +237,98 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = HomeDocument | PageDocument | SettingsDocument;
+
+/**
+ * Item in *ShopDisplay → Default → Primary → ShopDisplay*
+ */
+export interface ContactformSliceDefaultPrimaryShopdisplayItem {
+  /**
+   * Item field in *ShopDisplay → Default → Primary → ShopDisplay*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactform.default.primary.shopdisplay[].item
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  item: prismic.KeyTextField;
+
+  /**
+   * ShopImg field in *ShopDisplay → Default → Primary → ShopDisplay*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactform.default.primary.shopdisplay[].shopimg
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  shopimg: prismic.ImageField<never>;
+
+  /**
+   * Description field in *ShopDisplay → Default → Primary → ShopDisplay*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Product description for modal
+   * - **API ID Path**: contactform.default.primary.shopdisplay[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Text field in *ShopDisplay → Default → Primary → ShopDisplay*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Buy Now
+   * - **API ID Path**: contactform.default.primary.shopdisplay[].buttontext
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  buttontext: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ShopDisplay → Default → Primary*
+ */
+export interface ContactformSliceDefaultPrimary {
+  /**
+   * ShopDisplay field in *ShopDisplay → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactform.default.primary.shopdisplay[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  shopdisplay: prismic.GroupField<
+    Simplify<ContactformSliceDefaultPrimaryShopdisplayItem>
+  >;
+}
+
+/**
+ * Default variation for ShopDisplay Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContactformSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContactformSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ShopDisplay*
+ */
+type ContactformSliceVariation = ContactformSliceDefault;
+
+/**
+ * ShopDisplay Shared Slice
+ *
+ * - **API ID**: `contactform`
+ * - **Description**: Contactform
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContactformSlice = prismic.SharedSlice<
+  "contactform",
+  ContactformSliceVariation
+>;
 
 /**
  * Primary content in *Footer → Default → Primary*
@@ -523,87 +612,6 @@ type HeaderSliceVariation = HeaderSliceDefault;
 export type HeaderSlice = prismic.SharedSlice<"header", HeaderSliceVariation>;
 
 /**
- * Primary content in *HeroSlice → Default → Primary*
- */
-export interface HeroSliceSliceDefaultPrimary {
-  /**
-   * Header field in *HeroSlice → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Header van website
-   * - **API ID Path**: hero_slice.default.primary.header
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  header: prismic.KeyTextField;
-
-  /**
-   * Tekst field in *HeroSlice → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_slice.default.primary.text
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  text: prismic.RichTextField;
-
-  /**
-   * KnopTekst field in *HeroSlice → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_slice.default.primary.button_text
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  button_text: prismic.KeyTextField;
-
-  /**
-   * Knop URL field in *HeroSlice → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_slice.default.primary.button_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  button_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    "Primary" | "Secondary"
-  >;
-}
-
-/**
- * Default variation for HeroSlice Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type HeroSliceSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<HeroSliceSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *HeroSlice*
- */
-type HeroSliceSliceVariation = HeroSliceSliceDefault;
-
-/**
- * HeroSlice Shared Slice
- *
- * - **API ID**: `hero_slice`
- * - **Description**: HeroSlice
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type HeroSliceSlice = prismic.SharedSlice<
-  "hero_slice",
-  HeroSliceSliceVariation
->;
-
-/**
  * Primary content in *ImgContent → ImageRight → Primary*
  */
 export interface ImgContentSliceDefaultPrimary {
@@ -770,71 +778,6 @@ export type ImgContentSlice = prismic.SharedSlice<
   ImgContentSliceVariation
 >;
 
-/**
- * Primary content in *TestSlice → Default → Primary*
- */
-export interface TestSliceSliceDefaultPrimary {
-  /**
-   * Header field in *TestSlice → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Header van website
-   * - **API ID Path**: test_slice.default.primary.header
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  header: prismic.KeyTextField;
-
-  /**
-   * embed field in *TestSlice → Default → Primary*
-   *
-   * - **Field Type**: Embed
-   * - **Placeholder**: ette
-   * - **API ID Path**: test_slice.default.primary.embed
-   * - **Documentation**: https://prismic.io/docs/fields/embed
-   */
-  embed: prismic.EmbedField;
-
-  /**
-   * image field in *TestSlice → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: test_slice.default.primary.image
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image: prismic.ImageField<never>;
-}
-
-/**
- * Default variation for TestSlice Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TestSliceSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<TestSliceSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *TestSlice*
- */
-type TestSliceSliceVariation = TestSliceSliceDefault;
-
-/**
- * TestSlice Shared Slice
- *
- * - **API ID**: `test_slice`
- * - **Description**: TestSlice
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TestSliceSlice = prismic.SharedSlice<
-  "test_slice",
-  TestSliceSliceVariation
->;
-
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -866,6 +809,11 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ContactformSlice,
+      ContactformSliceDefaultPrimaryShopdisplayItem,
+      ContactformSliceDefaultPrimary,
+      ContactformSliceVariation,
+      ContactformSliceDefault,
       FooterSlice,
       FooterSliceDefaultPrimary,
       FooterSliceFooterimagePrimary,
@@ -878,20 +826,12 @@ declare module "@prismicio/client" {
       HeaderSliceDefaultPrimary,
       HeaderSliceVariation,
       HeaderSliceDefault,
-      HeroSliceSlice,
-      HeroSliceSliceDefaultPrimary,
-      HeroSliceSliceVariation,
-      HeroSliceSliceDefault,
       ImgContentSlice,
       ImgContentSliceDefaultPrimary,
       ImgContentSliceImageLeftPrimary,
       ImgContentSliceVariation,
       ImgContentSliceDefault,
       ImgContentSliceImageLeft,
-      TestSliceSlice,
-      TestSliceSliceDefaultPrimary,
-      TestSliceSliceVariation,
-      TestSliceSliceDefault,
     };
   }
 }
