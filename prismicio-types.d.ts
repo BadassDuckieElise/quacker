@@ -84,7 +84,7 @@ interface HomeDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice>; /**
    * Meta Title field in *Home*
    *
    * - **Field Type**: Text
@@ -92,7 +92,7 @@ interface HomeDocumentData {
    * - **API ID Path**: home.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
+   */
   meta_title: prismic.KeyTextField;
 
   /**
@@ -130,7 +130,10 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type PageDocumentDataSlicesSlice = ContactformSlice | ImgContentSlice;
+type PageDocumentDataSlicesSlice =
+  | FormulierSlice
+  | ContactformSlice
+  | ImgContentSlice;
 
 /**
  * Content for page documents
@@ -145,7 +148,7 @@ interface PageDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
    * Meta Title field in *page*
    *
    * - **Field Type**: Text
@@ -153,7 +156,7 @@ interface PageDocumentData {
    * - **API ID Path**: page.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
+   */
   meta_title: prismic.KeyTextField;
 
   /**
@@ -492,6 +495,51 @@ type FooterSliceVariation =
 export type FooterSlice = prismic.SharedSlice<"footer", FooterSliceVariation>;
 
 /**
+ * Primary content in *Formulier → Default → Primary*
+ */
+export interface FormulierSliceDefaultPrimary {
+  /**
+   * FormHeader field in *Formulier → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Contact us!
+   * - **API ID Path**: formulier.default.primary.formheader
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  formheader: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Formulier Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FormulierSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FormulierSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Formulier*
+ */
+type FormulierSliceVariation = FormulierSliceDefault;
+
+/**
+ * Formulier Shared Slice
+ *
+ * - **API ID**: `formulier`
+ * - **Description**: Formulier
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FormulierSlice = prismic.SharedSlice<
+  "formulier",
+  FormulierSliceVariation
+>;
+
+/**
  * Primary content in *Header → Default → Primary*
  */
 export interface HeaderSliceDefaultPrimary {
@@ -822,6 +870,10 @@ declare module "@prismicio/client" {
       FooterSliceDefault,
       FooterSliceFooterimage,
       FooterSliceFootermap,
+      FormulierSlice,
+      FormulierSliceDefaultPrimary,
+      FormulierSliceVariation,
+      FormulierSliceDefault,
       HeaderSlice,
       HeaderSliceDefaultPrimary,
       HeaderSliceVariation,

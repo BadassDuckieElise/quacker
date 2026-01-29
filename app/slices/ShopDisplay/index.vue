@@ -16,12 +16,13 @@ onMounted(() => {
   }
 });
 
-const openModal = (item: any) => {
+const openModal = (item: any ) => {
   console.log("Opening modal with item:", item);
   selectedItem.value = item;
   isModalOpen.value = true;
   // Prevent body scroll when modal is open
   document.body.style.overflow = "hidden";
+  // Voor toekomst niet "any" gebruiken maar juiste type definiëren
 };
 
 const closeModal = () => {

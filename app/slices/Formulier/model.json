@@ -1,0 +1,26 @@
+{
+  "id": "formulier",
+  "type": "SharedSlice",
+  "name": "Formulier",
+  "description": "Formulier",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "formheader": {
+          "type": "Text",
+          "config": {
+            "label": "FormHeader",
+            "placeholder": "Contact us!"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
